@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" />
+    <link href="./material-icons/material-icons.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet" />
+    <title>Circular Navigation Bar</title>
+</head>
+
+<body>
+    <div class="contents-container">
+        <div class="menu">
+            <input type="checkbox" id="toggle" />
+            <label id="show-menu" for="toggle">
+                <div class="btn">
+                    <i class="material-icons md-36 toggleBtn menuBtn">menu</i>
+                    <i class="material-icons md-36 toggleBtn closeBtn">close</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">photo_camera</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">photo</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">music_note</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">chat_bubble</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">settings</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">phone</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">cloud</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons md-36">videocam</i>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" />
+    <link href="./material-icons/material-icons.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet" />
+    <title>Floating Button</title>
+</head>
+
+<body>
+    <div class="contents-container">
+        <h1 class="title" id="title">모드 변경</h1>
+        <button class="btn red" id="btnLeftClick">마우스 좌클릭</button>
+        <button class="btn blue" id="btnRightClick">마우스 우클릭</button>
+        <button class="btn green" id="btnDrag">텔레포트</button>
+        <button class="btn yellow" id="btnScroll">스크롤</button>
+        <button class="btn purple" id="btnControl">기능 실행</button>
+    </div>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+</body>
+
+</html>
