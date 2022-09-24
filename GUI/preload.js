@@ -11,6 +11,4 @@ const api = Object.values(Keys).reduce((prevJson, keyJson) => {
     return newJson;
 }, {});
 
-console.dir(api);
-
 contextBridge.exposeInMainWorld("electronAPI", api);
