@@ -42,35 +42,32 @@ def msg(sid, data):
 
 @sio.on(keys.SET_MODE_LEFT_CLICK)
 def msg(sid, data):
-    mouse_mode = Mode.LEFT_CLICK
-    return "OK", "Mouse Mode Changed To Left Click"
-
+    return set_mode(Mode.LEFT_CLICK)
 
 @sio.on(keys.SET_MODE_RIGHT_CLICK)
 def msg(sid, data):
-    mouse_mode = Mode.RIGHT_CLICK
-    return "OK", "Mouse Mode Changed To Right Click"
+    return set_mode(Mode.RIGHT_CLICK)
 
 
 @sio.on(keys.SET_MODE_DRAG)
 def msg(sid, data):
-    mouse_mode = Mode.DRAG
-    return "OK", "Mouse Mode Changed To Drag"
+    return set_mode(Mode.DRAG)
 
 @sio.on(keys.SET_MODE_SCROLL)
 def msg(sid, data):
-    mouse_mode = Mode.SCROLL
-    return "OK", "Mouse Mode Changed To Scroll"
+    return set_mode(Mode.SCROLL)
 
 
 @sio.on(keys.MOVE_MOUSE)
 def msg(sid, data):
     direction = int(data)
-    print(direction)
     move_mouse(direction)
     return "OK", "Mouse Mode Changed To Scroll"
 
-def do_something():
+
+@sio.on(keys.PERFORM)
+def msg(sid, data):
+    global mouse_mode
     if mouse_mode == Mode.LEFT_CLICK:
         do_left_click()
     elif mouse_mode == Mode.RIGHT_CLICK:
@@ -93,6 +90,11 @@ def do_drag():
 
 def do_scroll():
     mouse.scroll(0, 2)
+def set_mode(mode):
+    global mouse_mode
+    mouse_mode = mode
+    print("set_mode")
+    return "OK", f"Mouse Mode Changed To {mode.to_string()}"
 
 @sio.event
 def disconnect(sid):

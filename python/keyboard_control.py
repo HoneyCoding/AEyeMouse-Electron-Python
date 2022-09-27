@@ -30,7 +30,7 @@ def on_press(key):
     elif keyboard_key == 'd':
         sio.emit(keys.MOVE_MOUSE, Direction.RIGHT)
     elif keyboard_key == 'j':
-        sio.emit(keys.CLICK_LEFT, {})
+        sio.emit(keys.PERFORM, {})
     print("Key {} pressed".format(key))
 
 
