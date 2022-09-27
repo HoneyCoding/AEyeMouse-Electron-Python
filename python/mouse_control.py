@@ -58,6 +58,10 @@ def msg(sid, data):
     return set_mode(Mode.SCROLL)
 
 
+@sio.on(keys.SET_MODE_TELEPORT)
+def msg(sid, data):
+    return set_mode(Mode.TELEPORT)
+
 @sio.on(keys.MOVE_MOUSE)
 def msg(sid, data):
     direction = int(data)
@@ -76,6 +80,8 @@ def msg(sid, data):
         do_drag()
     elif mouse_mode == Mode.SCROLL:
         do_scroll()
+    elif mouse_mode == Mode.TELEPORT:
+        do_teleport()
 
 def do_left_click():
     mouse.press(Button.left)
@@ -90,6 +96,10 @@ def do_drag():
 
 def do_scroll():
     mouse.scroll(0, 2)
+    
+def do_teleport():
+    mouse.position = (10, 20)
+    
 def set_mode(mode):
     global mouse_mode
     mouse_mode = mode

@@ -10,7 +10,7 @@ const btnLeftClick = document.getElementById("btnLeftClick");
 const btnRightClick = document.getElementById("btnRightClick");
 const btnDrag = document.getElementById("btnDrag");
 const btnScroll = document.getElementById("btnScroll");
-const btnControl = document.getElementById("btnControl");
+const btnTeleport = document.getElementById("btnTeleport");
 
 const btnList = [btnLeftClick, btnRightClick, btnDrag, btnScroll];
 
@@ -19,6 +19,7 @@ const Mode = {
     rightClick: "rightClick",
     drag: "drag",
     scroll: "scroll",
+    teleport: "teleport"
 };
 
 let currentMode = Mode.leftClick;
@@ -58,7 +59,8 @@ btnRightClick.addEventListener("click", (e) => {
 
 btnDrag.addEventListener("click", (e) => {
     currentMode = Mode.drag;
-    electronAPI.setModeDrag();
+    // electronAPI.setModeDrag();
+    alert('드래그 기능은 아직 구현되지 않았습니다!');
     updateUI();
 });
 
@@ -68,6 +70,7 @@ btnScroll.addEventListener("click", (e) => {
     updateUI();
 });
 
-btnControl.addEventListener("click", (e) => {
-    controlMouse();
+btnTeleport.addEventListener("click", (e) => {
+    currentMode = Mode.teleport;
+    electronAPI.setModeTeleport();
 });

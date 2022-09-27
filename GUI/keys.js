@@ -18,6 +18,7 @@ function createKeyJson(key, languages = ["js", "python"]) {
 const setModeLeftClick = createKeyJson('set-mode-left-click');
 const setModeRightClick = createKeyJson("set-mode-right-click");
 const setModeDrag = createKeyJson("set-mode-drag");
+const setModeTeleport = createKeyJson("set-mode-teleport");
 const setModeScroll = createKeyJson('set-mode-scroll');
 
 module.exports = {
@@ -25,4 +26,5 @@ module.exports = {
     setModeRightClick,
     setModeDrag,
     setModeScroll,
+    setModeTeleport
 };
