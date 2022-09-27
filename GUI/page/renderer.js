@@ -30,37 +30,41 @@ function updateUI() {
 function controlMouse() {
     switch (currentMode) {
         case Mode.leftClick:
-            electronAPI.clickLeftMouse();
+            electronAPI.setModeLeftClick();
             break;
         case Mode.rightClick:
-            electronAPI.clickRightMouse();
+            electronAPI.setModeRightClick();
             break;
         case Mode.drag:
-            electronAPI.dragMouse();
+            electronAPI.setModeDrag();
             break;
         case Mode.scroll:
-            electronAPI.scrollMouse();
+            electronAPI.setModeScroll();
             break;
     }
 }
 
 btnLeftClick.addEventListener("click", (e) => {
     currentMode = Mode.leftClick;
+    electronAPI.setModeLeftClick();
     updateUI();
 });
 
 btnRightClick.addEventListener("click", (e) => {
     currentMode = Mode.rightClick;
+    electronAPI.setModeRightClick();
     updateUI();
 });
 
 btnDrag.addEventListener("click", (e) => {
     currentMode = Mode.drag;
+    electronAPI.setModeDrag();
     updateUI();
 });
 
 btnScroll.addEventListener("click", (e) => {
     currentMode = Mode.scroll;
+    electronAPI.setModeScroll();
     updateUI();
 });
 
