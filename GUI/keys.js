@@ -3,7 +3,7 @@
  * 예를 들어 createKeyJson('click-left-mouse') 함수를 실행하면
  * { js: 'click-left-mouse-js', python: 'click-left-mouse-python' }가 return된다. 
  * 
- * 예를 들어 createKeyJson('click-left-mouse', ['js', 'C', 'C++']) 함수를 실행하면
+ * 예를 들어 createKeyJson('click-left-mouse', ['js', 'C', 'C++']) 함수를 실행하면 JSON 타입인
  * { js: 'click-left-mouse-js', C: 'click-left-mouse-C', C++: 'click-left-mouse-C++' }가 return된다. */
 function createKeyJson(key, languages = ["js", "python"]) {
     const keyJson = languages.reduce((prevJSON, item) => {

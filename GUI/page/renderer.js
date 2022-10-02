@@ -42,6 +42,9 @@ function controlMouse() {
         case Mode.scroll:
             electronAPI.setModeScroll();
             break;
+        case Mode.teleport:
+            electronAPI.set
+            break;
     }
 }
 
