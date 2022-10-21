@@ -1,6 +1,6 @@
 /** 해당 함수 실행 시 결과로 JSON이 return된다.
  * 
- * 예를 들어 createKeyJson('click-left-mouse') 함수를 실행하면
+ * 예를 들어 createKeyJson('click-left-mouse') 함수를 실행하면 JSON 타입인
  * { js: 'click-left-mouse-js', python: 'click-left-mouse-python' }가 return된다. 
  * 
  * 예를 들어 createKeyJson('click-left-mouse', ['js', 'C', 'C++']) 함수를 실행하면 JSON 타입인

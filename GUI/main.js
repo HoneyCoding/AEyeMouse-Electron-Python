@@ -10,7 +10,6 @@ const socket = io("http://localhost:5000");
 
 function createWindow() {
     // Create the browser window.
-
     if (mainWindow) return;
 
     // Create a window that fills the screen's available work area.
@@ -21,8 +20,10 @@ function createWindow() {
     const mainWindowWidth = 300;
     const mainWindowHeight = 600;
 
-    const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
-    const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
+    // const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
+    // const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
+    const mainWindowX = 1400;
+    const mainWindowY = 400;
 
     mainWindow = new BrowserWindow({
         x: mainWindowX,

@@ -3,6 +3,7 @@ import eventlet
 import socketio
 
 from enum_types import Direction, Mode
+from functions import decodeString
 import keys
 
 SERVER_IP = 'localhost'
@@ -68,8 +69,14 @@ def msg(sid, data):
     move_mouse(direction)
     return "OK", "Mouse Mode Changed To Scroll"
 
+@sio.on(keys.TELEPORT)
+def msg(sid, data):
+    decoded_data = decodeString(data, int)
+    position = (decoded_data[0], decoded_data[1])
+    do_teleport(position)
+    return "OK", "Mouse TELEPORT"
 
-@sio.on(keys.PERFORM)
+@sio.on(keys.BLINK)
 def msg(sid, data):
     global mouse_mode
     if mouse_mode == Mode.LEFT_CLICK:
@@ -97,8 +104,8 @@ def do_drag():
 def do_scroll():
     mouse.scroll(0, 2)
     
-def do_teleport():
-    mouse.position = (10, 20)
+def do_teleport(position = (10, 20)):
+    mouse.position = position
     
 def set_mode(mode):
     global mouse_mode

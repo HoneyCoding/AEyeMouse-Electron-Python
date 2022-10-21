@@ -10,4 +10,5 @@ SET_MODE_RIGHT_CLICK = 'set-mode-right-click-python'
 SET_MODE_LEFT_CLICK = 'set-mode-left-click-python'
 SET_MODE_TELEPORT = "set-mode-teleport-python"
 CLICK_LEFT = 'click-left-python'
-PERFORM = 'perform-python'
+TELEPORT = 'teleport-python'
+BLINK = 'blink-python'

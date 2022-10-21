@@ -10,8 +10,8 @@ import keys
 # --- Socket 클라이언트 구현 ---
 # Socket을 활용해 마우스 컨트롤과 관련된 기능을 Socket 서버에 요청합니다.
 # 키보드 입력을 받을 때 기능을 수행하는 해당 코드는 Socket 통신의 클라이언트로 구현되어 있습니다.
-sio = socketio.Client(logger=False)
-sio.connect('http://localhost:5000')
+sio = socketio.Client()
+sio.connect('http://127.0.0.1:5000')
 
 @sio.event
 def connect():
@@ -36,7 +36,7 @@ def on_press(key):
     elif keyboard_key == 'd':
         sio.emit(keys.MOVE_MOUSE, Direction.RIGHT)
     elif keyboard_key == 'j':
-        sio.emit(keys.PERFORM, {})
+        sio.emit(keys.BLINK, {})
     print("Key {} pressed".format(key))
 
 
