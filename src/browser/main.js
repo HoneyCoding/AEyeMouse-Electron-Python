@@ -6,47 +6,54 @@ const { io } = require('socket.io-client');
 const Keys = require('./keys');
 const filePath = require('../common/filePath');
 
-let mainWindow;
+let mainWindow = null;
 
 // const socket = io("http://localhost:5000");
 
 function createWindow() {
     // Create the browser window.
-    if (mainWindow) return;
-
-    // Create a window that fills the screen's available work area.
-    const primaryDisplay = screen.getPrimaryDisplay();
-    const { width: displayWidth, height: displayHeight } =
-        primaryDisplay.workAreaSize;
-
-    const mainWindowWidth = 300;
-    const mainWindowHeight = 600;
-
-    // const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
-    // const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
-    const mainWindowX = 1400;
-    const mainWindowY = 400;
-
-    mainWindow = new BrowserWindow({
-        x: mainWindowX,
-        y: mainWindowY,
-        width: mainWindowWidth,
-        height: mainWindowHeight,
-        alwaysOnTop: true,
-        titleBarStyle: "hidden-inset",
-        transparent: true,
-        resizable: false,
-        visibleOnAllWorkspaces: true,
-        fullscreen: false,
-        frame: false,
-        webPreferences: {
-            preload: path.join(filePath.browserPath, "preload.js"),
-        },
-    });
+    createMainWindow();
 
     // setupIPCSockets();
 
     // and load the index.html of the app.
+
+    // mainWindow.webContents.openDevTools();
+}
+
+function createMainWindow() {
+        if (mainWindow !== null) return;
+
+        // Create a window that fills the screen's available work area.
+        const primaryDisplay = screen.getPrimaryDisplay();
+        const { width: displayWidth, height: displayHeight } =
+            primaryDisplay.workAreaSize;
+
+        const mainWindowWidth = 300;
+        const mainWindowHeight = 600;
+
+        // const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
+        // const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
+        const mainWindowX = 1400;
+        const mainWindowY = 400;
+
+        mainWindow = new BrowserWindow({
+            x: mainWindowX,
+            y: mainWindowY,
+            width: mainWindowWidth,
+            height: mainWindowHeight,
+            alwaysOnTop: true,
+            titleBarStyle: "hidden-inset",
+            transparent: true,
+            resizable: false,
+            visibleOnAllWorkspaces: true,
+            fullscreen: false,
+            frame: false,
+            webPreferences: {
+                preload: path.join(filePath.browserPath, "preload.js"),
+            },
+        });
+
     const htmlPath = path.join(filePath.rendererMainPath, "index.html");
 
     mainWindow.loadFile(htmlPath);
@@ -56,8 +63,6 @@ function createWindow() {
     mainWindow.on("closed", () => {
         mainWindow = null;
     });
-
-    // mainWindow.webContents.openDevTools();
 }
 
 function setupIPCSockets() {
