@@ -2,11 +2,13 @@
 const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
 const { io } = require('socket.io-client');
-const Keys = require('./browser/keys');
+
+const Keys = require('./keys');
+const filePath = require('../common/filePath');
 
 let mainWindow;
 
-const socket = io("http://localhost:5000");
+// const socket = io("http://localhost:5000");
 
 function createWindow() {
     // Create the browser window.
@@ -38,14 +40,14 @@ function createWindow() {
         fullscreen: false,
         frame: false,
         webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
+            preload: path.join(filePath.browserPath, "preload.js"),
         },
     });
 
-    setupIPCSockets();
+    // setupIPCSockets();
 
     // and load the index.html of the app.
-    const htmlPath = path.join(__dirname, "page", "index.html");
+    const htmlPath = path.join(filePath.rendererMainPath, "index.html");
 
     mainWindow.loadFile(htmlPath);
     // mainWindow.setIgnoreMouseEvents(true);
