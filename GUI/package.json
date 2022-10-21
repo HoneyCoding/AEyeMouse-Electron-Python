@@ -4,8 +4,8 @@
     "description": "A minimal Electron application",
     "main": "main.js",
     "scripts": {
-        "start": "electron .",
-        "startDev": "nodemon --exec electron . -e js,json,css,html"
+        "start": "electron ./browser/main.js",
+        "startDev": "nodemon --exec electron ./browser/main.js -e js,json,css,html"
     },
     "repository": "https://github.com/electron/electron-quick-start",
     "author": "GitHub",

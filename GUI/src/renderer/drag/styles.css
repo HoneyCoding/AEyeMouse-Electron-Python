@@ -1,0 +1,72 @@
+
+body {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+#pin-area {
+    position: absolute;
+}
+
+#clickable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+
+#clickable:hover {
+    background-color: orange;
+    opacity: 0.6;
+}
+
+.pin-img {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-1 {
+    opacity: 1;
+}
+
+.d-none {
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+/* .top {
+    top: 0;
+}
+
+.left {
+    left: 0;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.right {
+    right: 0;
+} */

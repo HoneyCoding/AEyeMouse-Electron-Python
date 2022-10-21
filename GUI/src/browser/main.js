@@ -2,7 +2,7 @@
 const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
 const { io } = require('socket.io-client');
-const Keys = require('./keys');
+const Keys = require('./browser/keys');
 
 let mainWindow;
 
