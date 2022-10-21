@@ -1,58 +1,58 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
-const { io } = require('socket.io-client');
+const { io } = require("socket.io-client");
 
-const Keys = require('./keys');
-const filePath = require('../common/filePath');
+const Keys = require("./keys");
+const filePath = require("../common/filePath");
 
 let mainWindow = null;
+let dragWindow = null;
 
 // const socket = io("http://localhost:5000");
 
 function createWindow() {
     // Create the browser window.
     createMainWindow();
-
-    // setupIPCSockets();
+    setupIPCSockets();
 
     // and load the index.html of the app.
 
-    // mainWindow.webContents.openDevTools();
+    // openDevTools();
 }
 
 function createMainWindow() {
-        if (mainWindow !== null) return;
+    if (mainWindow !== null) return;
 
-        // Create a window that fills the screen's available work area.
-        const primaryDisplay = screen.getPrimaryDisplay();
-        const { width: displayWidth, height: displayHeight } =
-            primaryDisplay.workAreaSize;
+    // Create a window that fills the screen's available work area.
+    // const primaryDisplay = screen.getPrimaryDisplay();
+    // const { width: displayWidth, height: displayHeight } =
+    //     primaryDisplay.workAreaSize;
 
-        const mainWindowWidth = 300;
-        const mainWindowHeight = 600;
+    const mainWindowWidth = 300;
+    const mainWindowHeight = 600;
 
-        // const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
-        // const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
-        const mainWindowX = 1400;
-        const mainWindowY = 400;
+    // const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
+    // const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
+    const mainWindowX = 1400;
+    const mainWindowY = 400;
 
-        mainWindow = new BrowserWindow({
-            x: mainWindowX,
-            y: mainWindowY,
-            width: mainWindowWidth,
-            height: mainWindowHeight,
-            alwaysOnTop: true,
-            titleBarStyle: "hidden-inset",
-            transparent: true,
-            resizable: false,
-            visibleOnAllWorkspaces: true,
-            fullscreen: false,
-            frame: false,
-            webPreferences: {
-                preload: path.join(filePath.browserPath, "preload.js"),
-            },
-        });
+    mainWindow = new BrowserWindow({
+        x: mainWindowX,
+        y: mainWindowY,
+        width: mainWindowWidth,
+        height: mainWindowHeight,
+        alwaysOnTop: true,
+        titleBarStyle: "hidden-inset",
+        transparent: true,
+        resizable: false,
+        visibleOnAllWorkspaces: true,
+        fullscreen: false,
+        frame: false,
+        webPreferences: {
+            preload: path.join(filePath.browserPath, "preload.js"),
+        },
+    });
 
     const htmlPath = path.join(filePath.rendererMainPath, "index.html");
 
@@ -63,6 +63,42 @@ function createMainWindow() {
     mainWindow.on("closed", () => {
         mainWindow = null;
     });
+}
+
+function createDragWindow() {
+    if (dragWindow !== null) return;
+
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { width, height } = primaryDisplay.workAreaSize;
+
+    dragWindow = new BrowserWindow({
+        width,
+        height,
+        resizable: false,
+        movable: false,
+        fullscreenable: false,
+        focusable: false,
+        show: false,
+        frame: false,
+        alwaysOnTop: true,
+        transparent: true,
+        webPreferences: {
+            preload: path.join(filePath.browserPath, "preload.js"),
+        },
+    });
+
+    dragWindow.loadFile(path.join(filePath.rendererDragPath, "index.html"));
+
+    dragWindow.show();
+
+    dragWindow.on("closed", () => {
+        dragWindow = null;
+    });
+}
+
+function openDevTools() {
+    if (mainWindow !== null) mainWindow.webContents.openDevTools();
+    if (dragWindow !== null) dragWindow.webContents.openDevTools();
 }
 
 function setupIPCSockets() {
