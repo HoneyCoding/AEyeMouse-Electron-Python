@@ -21,10 +21,17 @@ const setModeDrag = createKeyJson("set-mode-drag");
 const setModeTeleport = createKeyJson("set-mode-teleport");
 const setModeScroll = createKeyJson('set-mode-scroll');
 
+const showDragWindow = "show-drag-window";
+const hideDragWindow = "hide-drag-window";
+const dragMouse = 'drag-mouse';
+
 module.exports = {
     setModeLeftClick,
     setModeRightClick,
     setModeDrag,
     setModeScroll,
-    setModeTeleport
+    setModeTeleport,
+    showDragWindow,
+    hideDragWindow,
+    dragMouse,
 };

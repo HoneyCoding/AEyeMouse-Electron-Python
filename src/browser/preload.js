@@ -1,6 +1,7 @@
 
 const { contextBridge, ipcRenderer } = require("electron");
-const Keys = require('./keys');
+
+const Keys = require('../common/keys');
 
 function convertToCamelCase(key) {
     return key.split('-').map((word, index) => {

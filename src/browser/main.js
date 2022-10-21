@@ -3,7 +3,7 @@ const { app, BrowserWindow, screen, ipcMain } = require("electron");
 const path = require("path");
 const { io } = require("socket.io-client");
 
-const Keys = require("./keys");
+const Keys = require("../common/keys");
 const filePath = require("../common/filePath");
 
 let mainWindow = null;
@@ -103,6 +103,28 @@ function openDevTools() {
 
 function setupIPCSockets() {
     Object.values(Keys).map((keyJson) => setupIPCSocket(keyJson));
+
+    ipcMain.on(Keys.dragMouse, (event, arg) => {
+        if (dragWindow !== null) {
+            dragWindow.close();
+        }
+        socket.emit(Keys.dragMouse, arg, (err, res) => {
+            console.log(`res from python: ${res}`);
+        });
+    });
+
+    ipcMain.on(Keys.showDragWindow, (event, arg) => {
+        if (dragWindow === null) {
+            createDragWindow();
+        }
+        // childWindow.show();
+    });
+
+    ipcMain.on(Keys.hideDragWindow, (event, arg) => {
+        if (dragWindow !== null) {
+            dragWindow.close();
+        }
+    });
 }
 
 function setupIPCSocket(key) {
