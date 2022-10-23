@@ -9,7 +9,7 @@ const filePath = require("../common/filePath");
 let mainWindow = null;
 let dragWindow = null;
 
-// const socket = io("http://localhost:5000");
+const socket = io("http://localhost:5000");
 
 function createWindow() {
     // Create the browser window.
@@ -25,17 +25,17 @@ function createMainWindow() {
     if (mainWindow !== null) return;
 
     // Create a window that fills the screen's available work area.
-    // const primaryDisplay = screen.getPrimaryDisplay();
-    // const { width: displayWidth, height: displayHeight } =
-    //     primaryDisplay.workAreaSize;
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { width: displayWidth, height: displayHeight } =
+        primaryDisplay.workAreaSize;
 
     const mainWindowWidth = 300;
     const mainWindowHeight = 600;
 
-    // const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
-    // const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
-    const mainWindowX = 1400;
-    const mainWindowY = 400;
+    const mainWindowX = parseInt((displayWidth - mainWindowWidth) * 0.9);
+    const mainWindowY = parseInt((displayHeight - mainWindowHeight) * 0.8);
+    // const mainWindowX = 1400;
+    // const mainWindowY = 400;
 
     mainWindow = new BrowserWindow({
         x: mainWindowX,
@@ -78,7 +78,6 @@ function createDragWindow() {
         movable: false,
         fullscreenable: false,
         focusable: false,
-        show: false,
         frame: false,
         alwaysOnTop: true,
         transparent: true,
@@ -88,9 +87,6 @@ function createDragWindow() {
     });
 
     dragWindow.loadFile(path.join(filePath.rendererDragPath, "index.html"));
-
-    dragWindow.show();
-
     dragWindow.on("closed", () => {
         dragWindow = null;
     });
@@ -102,7 +98,7 @@ function openDevTools() {
 }
 
 function setupIPCSockets() {
-    Object.values(Keys).map((keyJson) => setupIPCSocket(keyJson));
+    // Object.values(Keys).map((keyJson) => setupIPCSocket(keyJson));
 
     ipcMain.on(Keys.dragMouse, (event, arg) => {
         if (dragWindow !== null) {
@@ -117,7 +113,6 @@ function setupIPCSockets() {
         if (dragWindow === null) {
             createDragWindow();
         }
-        // childWindow.show();
     });
 
     ipcMain.on(Keys.hideDragWindow, (event, arg) => {

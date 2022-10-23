@@ -62,8 +62,7 @@ btnRightClick.addEventListener("click", (e) => {
 
 btnDrag.addEventListener("click", (e) => {
     currentMode = Mode.drag;
-    // electronAPI.setModeDrag();
-    alert('드래그 기능은 아직 구현되지 않았습니다!');
+    electronAPI.showDragWindow();
     updateUI();
 });
 
@@ -73,7 +72,7 @@ btnScroll.addEventListener("click", (e) => {
     updateUI();
 });
 
-btnTeleport.addEventListener("click", (e) => {
-    currentMode = Mode.teleport;
-    electronAPI.setModeTeleport();
-});
+// btnTeleport.addEventListener("click", (e) => {
+//     currentMode = Mode.teleport;
+//     electronAPI.setModeTeleport();
+// });
