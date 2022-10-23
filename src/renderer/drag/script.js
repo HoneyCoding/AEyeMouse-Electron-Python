@@ -14,7 +14,7 @@ let clickCount = 0;
 
 container.addEventListener('click', function(e) {
     if (clickCount >= 2 && !clickable.contains(e.target)) {
-        electronAPI.hidePinWindow();
+        electronAPI.hideDragWindow();
         return;
     }
 
