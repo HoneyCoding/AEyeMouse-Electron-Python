@@ -6,6 +6,8 @@ const { io } = require("socket.io-client");
 const Keys = require("../common/keys");
 const filePath = require("../common/filePath");
 
+require(path.join(filePath.commonPath, 'runPython'));
+
 let mainWindow = null;
 let dragWindow = null;
 
