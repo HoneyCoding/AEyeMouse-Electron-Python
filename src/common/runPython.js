@@ -5,14 +5,8 @@ const filePath = require("./filePath");
 
 console.log('hello');
 
-installPackages();
-
 // spawn new child process to call the python script
 let mousePy = runMousePy();
-
-function installPackages() {
-    return spawn("pip install", ['pyautogui',]);
-}
 
 function runMousePy() {
     return spawn("python", [path.join(filePath.pythonPath, "drag.py")]);
