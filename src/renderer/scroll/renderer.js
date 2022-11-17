@@ -34,9 +34,6 @@ scrollUpArea.addEventListener("mouseleave", function (e) {
 });
 
 scrollDownArea.addEventListener("mouseenter", function (e) {
-    // if (scrollDownAreaInterval !== null) return;
-    // scrollDownAreaInterval = setInterval(scrollMouseDown, 500);
-
     isScrollingUp = false;
     isScrollingDown = true;
 
@@ -59,11 +56,9 @@ closeButton.addEventListener("click", function (e) {
 });
 
 function scrollMouseUp() {
-    console.log("UP");
     electronAPI.scrollMouse("UP");
 }
 
 function scrollMouseDown() {
-    console.log("DOWN");
     electronAPI.scrollMouse("DOWN");
 }
