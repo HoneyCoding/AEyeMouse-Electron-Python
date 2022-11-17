@@ -6,10 +6,12 @@ const { io } = require("socket.io-client");
 const Keys = require("../common/keys");
 const filePath = require("../common/filePath");
 
-require(path.join(filePath.commonPath, 'runPython'));
+require(path.join(filePath.commonPath, "runPython"));
 
 let mainWindow = null;
 let dragWindow = null;
+let scrollWindow = null;
+let closeButtonWindow = null;
 
 const socket = io("http://localhost:5000");
 
@@ -94,6 +96,88 @@ function createDragWindow() {
     });
 }
 
+function createScrollWindow() {
+    if (scrollWindow !== null) return;
+
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { width: screenWidth } = primaryDisplay.workAreaSize;
+
+    const x = screenWidth - 720;
+    const y = 100;
+    const width = 40;
+    const height = 100;
+
+    scrollWindow = new BrowserWindow({
+        width,
+        height,
+        x,
+        y,
+        resizable: false,
+        movable: false,
+        fullscreenable: false,
+        focusable: false,
+        show: false,
+        frame: false,
+        alwaysOnTop: true,
+        transparent: true,
+        webPreferences: {
+            preload: path.join(filePath.mainPath, "preload.js"),
+        },
+    });
+    scrollWindow.loadFile(path.join(filePath.scrollPath, "index.html"));
+
+    scrollWindow.setIgnoreMouseEvents(true);
+
+    const closeButtonWidth = 80;
+    const closeButtonHeight = 40;
+    const closeButtonWindowX = x - (closeButtonWidth - width) / 2;
+    const closeButtonWindowY = y + height;
+
+    createCloseButtonWindow(
+        closeButtonWidth,
+        closeButtonHeight,
+        closeButtonWindowX,
+        closeButtonWindowY
+    );
+
+    scrollWindow.show();
+
+    scrollWindow.on("closed", () => {
+        scrollWindow = null;
+    });
+}
+
+function createCloseButtonWindow(width, height, x, y) {
+    if (closeButtonWindow !== null) return;
+    if (scrollWindow === null) return;
+
+    closeButtonWindow = new BrowserWindow({
+        parent: scrollWindow,
+        x,
+        y,
+        width,
+        height,
+        resizable: false,
+        movable: false,
+        fullscreenable: false,
+        focusable: false,
+        show: false,
+        frame: false,
+        alwaysOnTop: true,
+        transparent: true,
+        webPreferences: {
+            preload: path.join(filePath.mainPath, "preload.js"),
+        },
+    });
+    closeButtonWindow.loadFile(path.join(filePath.closeBtnPath, "index.html"));
+
+    closeButtonWindow.show();
+
+    closeButtonWindow.on("closed", () => {
+        closeButtonWindow = null;
+    });
+}
+
 function openDevTools() {
     if (mainWindow !== null) mainWindow.webContents.openDevTools();
     if (dragWindow !== null) dragWindow.webContents.openDevTools();
@@ -121,6 +205,25 @@ function setupIPCSockets() {
         if (dragWindow !== null) {
             dragWindow.close();
         }
+    });
+
+    ipcMain.on(Keys.showScrollWindow, (event, arg) => {
+        if (scrollWindow === null) {
+            createScrollWindow();
+        }
+    });
+
+    ipcMain.on(Keys.hideScrollWindow, (event, arg) => {
+        if (scrollWindow !== null) {
+            scrollWindow.close();
+        }
+    });
+
+    ipcMain.on(Keys.scrollMouse, (event, arg) => {
+        if (scrollWindow === null) return;
+        socket.emit(Keys.scrollMouse, arg, (err, res) => {
+            console.log(`res from python: ${res}`);
+        });
     });
 }
 

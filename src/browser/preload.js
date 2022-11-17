@@ -23,13 +23,24 @@ const api = Object.values(Keys.setMode).reduce((prevJson, keyJson) => {
 
 contextBridge.exposeInMainWorld("electronAPI", {
     ...api,
+    // Show and Hide Window Functions
     showDragWindow() {
         ipcRenderer.send(Keys.showDragWindow, "");
     },
     hideDragWindow() {
         ipcRenderer.send(Keys.hideDragWindow, "");
     },
+    showScrollWindow() {},
+    hideScrollWindow() {},
+
+    // Drag, Scroll Mouse Functions
     dragMouse(fromX, fromY, toX, toY) {
-        ipcRenderer.send(Keys.dragMouse, functions.encodeString(fromX, fromY, toX, toY));
+        ipcRenderer.send(
+            Keys.dragMouse,
+            functions.encodeString(fromX, fromY, toX, toY)
+        );
+    },
+    scrollMouse(direction) {
+        ipcRenderer.send(Keys.scrollMouse, direction);
     },
 });
