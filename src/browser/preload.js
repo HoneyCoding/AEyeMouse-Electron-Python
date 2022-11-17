@@ -1,14 +1,16 @@
-
 const { contextBridge, ipcRenderer } = require("electron");
 
-const Keys = require('../common/keys');
-const functions = require('../common/functions');
+const Keys = require("../common/keys");
+const functions = require("../common/functions");
 
 function convertToCamelCase(key) {
-    return key.split('-').map((word, index) => {
-        if (index == 0) return word.toLowerCase();
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    }).join('');
+    return key
+        .split("-")
+        .map((word, index) => {
+            if (index == 0) return word.toLowerCase();
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        })
+        .join("");
 }
 
 /**
@@ -30,8 +32,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
     hideDragWindow() {
         ipcRenderer.send(Keys.hideDragWindow, "");
     },
-    showScrollWindow() {},
-    hideScrollWindow() {},
+    showScrollWindow() {
+        ipcRenderer.send(Keys.showScrollWindow, "");
+    },
+    hideScrollWindow() {
+        ipcRenderer.send(Keys.hideScrollWindow, "");
+    },
 
     // Drag, Scroll Mouse Functions
     dragMouse(fromX, fromY, toX, toY) {

@@ -5,5 +5,5 @@ const mainContainer = document.getElementById("main-container");
 const closeButton = document.getElementById("close-btn");
 
 closeButton.addEventListener("click", function (e) {
-    electronAPI.closeWindow();
+    electronAPI.hideScrollWindow();
 });

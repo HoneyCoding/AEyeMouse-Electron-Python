@@ -68,7 +68,7 @@ btnDrag.addEventListener("click", (e) => {
 
 btnScroll.addEventListener("click", (e) => {
     currentMode = Mode.scroll;
-    electronAPI.setModeScroll();
+    electronAPI.showScrollWindow();
     updateUI();
 });
 

@@ -121,10 +121,10 @@ function createScrollWindow() {
         alwaysOnTop: true,
         transparent: true,
         webPreferences: {
-            preload: path.join(filePath.mainPath, "preload.js"),
+            preload: path.join(filePath.browserPath, "preload.js"),
         },
     });
-    scrollWindow.loadFile(path.join(filePath.scrollPath, "index.html"));
+    scrollWindow.loadFile(path.join(filePath.rendererScrollPath, "index.html"));
 
     scrollWindow.setIgnoreMouseEvents(true);
 
@@ -166,10 +166,10 @@ function createCloseButtonWindow(width, height, x, y) {
         alwaysOnTop: true,
         transparent: true,
         webPreferences: {
-            preload: path.join(filePath.mainPath, "preload.js"),
+            preload: path.join(filePath.browserPath, "preload.js"),
         },
     });
-    closeButtonWindow.loadFile(path.join(filePath.closeBtnPath, "index.html"));
+    closeButtonWindow.loadFile(path.join(filePath.rendererScrollCloseButtonPath, "index.html"));
 
     closeButtonWindow.show();
 
