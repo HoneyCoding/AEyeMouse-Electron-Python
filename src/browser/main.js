@@ -6,12 +6,20 @@ const { io } = require("socket.io-client");
 const Keys = require("../common/keys");
 const filePath = require("../common/filePath");
 
-require(path.join(filePath.commonPath, "runPython"));
+const runPython = require('../common/runPython');
 
 let mainWindow = null;
 let dragWindow = null;
 let scrollWindow = null;
 let closeButtonWindow = null;
+
+(async () => {
+    try {
+        await runPython();
+    } catch (e) {
+        console.err(e);
+    }
+});
 
 const socket = io("http://localhost:5000");
 

@@ -3,20 +3,22 @@ const path = require("path");
 
 const filePath = require("./filePath");
 
-// spawn new child process to call the python script
-let mousePy = runMousePy();
+const runPython = new Promise((resolve, reject) => {
+    const python = spawn("python", [
+        path.join(filePath.pythonPath, "drag-scroll.py"),
+    ]);
 
-function runMousePy() {
-    return spawn("python", [path.join(filePath.pythonPath, "drag-scroll.py")]);
-}
+    python.stdout.on("data", (data) => {
+        resolve(data);
+    });
 
-// collect data from script
-mousePy.stdout.on("data", function (data) {
-    console.log("Pipe data from python script ...");
-    dataToSend = data.toString();
+    python.stderr.on("data", (data) => {
+        reject(data);
+    });
+
+    python.on("close", (code) => {
+        console.log(`child process close all stdio with code ${code}`);
+    });
 });
-// in close event we are sure that stream from child process is closed
-mousePy.on("close", (code) => {
-    console.log(`child process close all stdio with code ${code}`);
-    mousePy = runMousePy();
-});
+
+module.exports = runPython;
