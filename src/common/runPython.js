@@ -7,7 +7,7 @@ const filePath = require("./filePath");
 let mousePy = runMousePy();
 
 function runMousePy() {
-    return spawn("python", [path.join(filePath.pythonPath, "drag.py")]);
+    return spawn("python", [path.join(filePath.pythonPath, "drag-scroll.py")]);
 }
 
 // collect data from script

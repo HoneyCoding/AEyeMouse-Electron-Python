@@ -29,5 +29,20 @@ def msg(sid, data):
     return "OK", "Drag"
 
 
+@sio.on('scroll-mouse')
+def msg(sid, data):
+    direction = data
+    print(direction)
+    scroll_value = 0
+    if direction == "UP":
+        scroll_value = 10
+    elif direction == "DOWN":
+        scroll_value = -10
+
+    pyautogui.scroll(scroll_value)
+
+    return "OK", "Scroll"
+
+
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('localhost', 5000)), app)
