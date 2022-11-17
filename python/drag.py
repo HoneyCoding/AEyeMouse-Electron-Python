@@ -12,11 +12,9 @@ SERVER_ADDR = (SERVER_IP, SERVER_PORT)
 sio = socketio.Server()
 app = socketio.WSGIApp(sio)
 
-
 @sio.event
 def connect(sid, environ):
     print('connect ', sid)
-
 
 @sio.event
 def disconnect(sid):
