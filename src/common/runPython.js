@@ -3,8 +3,6 @@ const path = require("path");
 
 const filePath = require("./filePath");
 
-console.log('hello');
-
 // spawn new child process to call the python script
 let mousePy = runMousePy();
 
