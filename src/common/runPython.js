@@ -9,11 +9,13 @@ const runPython = new Promise((resolve, reject) => {
     ]);
 
     python.stdout.on("data", (data) => {
-        resolve(data);
+        const dataToString = `python: ${data.toString()}`;
+        resolve(dataToString);
     });
 
     python.stderr.on("data", (data) => {
-        reject(data);
+        const dataToString = `python: ${data.toString()}`;
+        console.log(dataToString);
     });
 
     python.on("close", (code) => {
