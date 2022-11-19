@@ -28,9 +28,30 @@ body {
     bottom: 0;
 }
 
+.top-bar {
+    position: relative;
+}
+
 .title {
     text-align: center;
     font-size: 1.5rem;
+}
+
+.menu-btn {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    margin: auto 0;
+    padding: 4px 8px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: font-size 0.3s;
+    cursor: pointer;
 }
 
 .btn {
@@ -45,11 +66,11 @@ body {
     margin-top: 5px;
 }
 
-.btn:first-child {
+.btn:first-of-type {
     margin-top: 0;
 }
 
-.btn:last-child {
+.btn:last-of-type {
     margin-bottom: 5px;
 }
 

@@ -6,14 +6,20 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'" />
+    <link rel="stylesheet" href="../../resources/material-icons/material-icons.css">
     <link href="./styles.css" rel="stylesheet" />
     <title>Floating Button</title>
 </head>
 
 <body>
     <div class="contents-container">
-        <h1 class="title" id="title">모드 변경</h1>
-        <button class="btn red" id="btnLeftClick">마우스 좌클릭</button>
+        <div class="top-bar">
+            <h1 class="title" id="title">모드 선택</h1>
+            <button type="button" class="menu-btn" id="menu">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <button class="btn red" id="btnDoubleClick">더블 클릭</button>
         <button class="btn blue" id="btnRightClick">마우스 우클릭</button>
         <button class="btn green" id="btnDrag">드래그</button>
         <button class="btn yellow" id="btnScroll">스크롤</button>

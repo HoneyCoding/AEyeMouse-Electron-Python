@@ -6,51 +6,51 @@
 // process.
 
 const title = document.getElementById("title");
-const btnLeftClick = document.getElementById("btnLeftClick");
+const btnDoubleClick = document.getElementById("btnDoubleClick");
 const btnRightClick = document.getElementById("btnRightClick");
 const btnDrag = document.getElementById("btnDrag");
 const btnScroll = document.getElementById("btnScroll");
 const btnTeleport = document.getElementById("btnTeleport");
 
-const btnList = [btnLeftClick, btnRightClick, btnDrag, btnScroll];
+const btnList = [btnDoubleClick, btnRightClick, btnDrag, btnScroll];
 
 const Mode = {
-    leftClick: "leftClick",
+    doubleClick: "doubleClick",
     rightClick: "rightClick",
     drag: "drag",
     scroll: "scroll",
     teleport: "teleport"
 };
 
-let currentMode = Mode.leftClick;
+let currentMode = Mode.doubleClick;
 
 function updateUI() {
-    title.textContent = `현재 모드: ${currentMode}`;
+    // title.textContent = `현재 모드: ${currentMode}`;
 }
 
-function controlMouse() {
-    switch (currentMode) {
-        case Mode.leftClick:
-            electronAPI.setModeLeftClick();
-            break;
-        case Mode.rightClick:
-            electronAPI.setModeRightClick();
-            break;
-        case Mode.drag:
-            electronAPI.setModeDrag();
-            break;
-        case Mode.scroll:
-            electronAPI.setModeScroll();
-            break;
-        case Mode.teleport:
-            electronAPI.set
-            break;
-    }
-}
+// function controlMouse() {
+//     switch (currentMode) {
+//         case Mode.doubleClick:
+//             electronAPI.setModeLeftClick();
+//             break;
+//         case Mode.rightClick:
+//             electronAPI.setModeRightClick();
+//             break;
+//         case Mode.drag:
+//             electronAPI.setModeDrag();
+//             break;
+//         case Mode.scroll:
+//             electronAPI.setModeScroll();
+//             break;
+//         case Mode.teleport:
+//             electronAPI.set;
+//             break;
+//     }
+// }
 
-btnLeftClick.addEventListener("click", (e) => {
-    currentMode = Mode.leftClick;
-    electronAPI.setModeLeftClick();
+btnDoubleClick.addEventListener("click", (e) => {
+    currentMode = Mode.doubleClick;
+    electronAPI.setModeDoubleClick();
     updateUI();
 });
 

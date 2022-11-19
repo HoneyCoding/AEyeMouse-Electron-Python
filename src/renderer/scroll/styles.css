@@ -35,7 +35,7 @@ body {
     color: white;
 }
 
-.focusable-area:hover .material-icons {
+.focusable-area:hover {
     font-size:32px;
 }
 
