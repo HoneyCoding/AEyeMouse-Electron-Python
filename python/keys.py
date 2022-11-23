@@ -13,6 +13,8 @@ SET_MODE_DOUBLE_CLICK = 'set-mode-double-click'
 # Mouse 기능 동작 key
 DRAG_MOUSE = 'drag-mouse'
 SCROLL_MOUSE = 'scroll-mouse'
-DOUBLE_CLICK = 'double-click'
-RIGHT_CLICK = 'right-click'
-LEFT_CLICK = 'left-click'
+
+# 쓰이지 않는 주석화한 상수
+# LEFT_CLICK = 'left-click'
+# DOUBLE_CLICK = 'double-click'
+# RIGHT_CLICK = 'right-click'
