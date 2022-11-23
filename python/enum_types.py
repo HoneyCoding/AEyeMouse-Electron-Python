@@ -19,8 +19,6 @@ class Mode(IntEnum):
             return "DRAG"
         elif self == 4:
             return "SCROLL"
-        elif self == 5:
-            return "TELEPORT"
 
 # Direction은 마우스 커서의 움직임에 대해 위,아래,좌,우를 상징합니다.
 # Direction.UP / Direction.LEFT와 같은 형태로 코드를 작성해 값을 사용할 수 있습니다.
