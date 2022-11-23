@@ -9,7 +9,6 @@ class Mode(IntEnum):
     RIGHT_CLICK = 2
     DRAG = 3
     SCROLL = 4
-    TELEPORT = 5
     
     def to_string(self):
         if self == 1:

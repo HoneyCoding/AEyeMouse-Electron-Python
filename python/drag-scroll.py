@@ -38,7 +38,6 @@ def msg(sid, data):
     pyautogui.dragTo(to_x, to_y, 0.3, button='left')
     return "OK", keys.DRAG_MOUSE
 
-
 @sio.on(keys.SCROLL_MOUSE)
 def msg(sid, data):
     direction = data
