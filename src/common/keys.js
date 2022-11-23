@@ -15,11 +15,9 @@ function createKeyJson(key, languages = ["js", "python"]) {
     return keyJson;
 }
 
-const setModeDoubleClick = createKeyJson("set-mode-double-click");
-const setModeRightClick = createKeyJson("set-mode-right-click");
-const setModeDrag = createKeyJson("set-mode-drag");
-const setModeTeleport = createKeyJson("set-mode-teleport");
-const setModeScroll = createKeyJson("set-mode-scroll");
+// Set Mode
+const setModeDoubleClick = "set-mode-double-click";
+const setModeRightClick = "set-mode-right-click";
 
 // Drag
 const showDragWindow = "show-drag-window";
@@ -32,13 +30,9 @@ const hideScrollWindow = "hide-scroll-window";
 const scrollMouse = "scroll-mouse";
 
 module.exports = {
-    setMode: {
-        setModeDoubleClick,
-        setModeRightClick,
-        setModeDrag,
-        setModeScroll,
-        setModeTeleport,
-    },
+    // Set Mode Function Keys
+    setModeDoubleClick,
+    setModeRightClick,
 
     // Show and Hide Window Function Keys
     showDragWindow,

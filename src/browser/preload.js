@@ -24,7 +24,14 @@ const api = Object.values(Keys.setMode).reduce((prevJson, keyJson) => {
 }, {});
 
 contextBridge.exposeInMainWorld("electronAPI", {
-    ...api,
+    // Set Mode Functions
+    setModeDoubleClick() {
+        ipcRenderer.send(Keys.setModeDoubleClick, "");
+    },
+    setModeRightClick() {
+        ipcRenderer.send(Keys.setModeRightClick, "");
+    },
+
     // Show and Hide Window Functions
     showDragWindow() {
         ipcRenderer.send(Keys.showDragWindow, "");

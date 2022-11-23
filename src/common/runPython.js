@@ -25,8 +25,9 @@ const createRunPythonPromise = (fileName) =>
     });
 
 const runPython = () =>
-    createRunPythonPromise("control_mouse.py").then(() =>
-        createRunPythonPromise("keyboard_control.py")
-    );
+    createRunPythonPromise("control_mouse.py").then((value) => {
+        console.log(value);
+        // return createRunPythonPromise("keyboard_control.py");
+    });
 
 module.exports = runPython;
