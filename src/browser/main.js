@@ -17,9 +17,9 @@ let closeButtonWindow = null;
     try {
         await runPython();
     } catch (e) {
-        console.err(e);
+        console.error(e);
     }
-});
+})();
 
 const socket = io("http://localhost:5000");
 

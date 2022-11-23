@@ -3,7 +3,7 @@ const path = require("path");
 
 const filePath = require("./filePath");
 
-const runPython = new Promise((resolve, reject) => {
+const runPython = () => new Promise((resolve, reject) => {
     const python = spawn("python", [
         path.join(filePath.pythonPath, "drag-scroll.py"),
     ]);
@@ -15,7 +15,7 @@ const runPython = new Promise((resolve, reject) => {
 
     python.stderr.on("data", (data) => {
         const dataToString = `python: ${data.toString()}`;
-        console.log(dataToString);
+        reject(dataToString);
     });
 
     python.on("close", (code) => {
