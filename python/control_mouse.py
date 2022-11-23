@@ -45,7 +45,7 @@ def scroll_mouse(direction, speed = 10):
 
     pyautogui.scroll(scroll_value)
     
-def move_mouse(direction):
+def move_mouse(direction: Direction):
     cur_x, cur_y = pyautogui.position()
     speed = 10
     if direction == Direction.UP:
@@ -94,6 +94,12 @@ def msg(sig, data):
 def msg(sig, data):
     set_mode(Mode.RIGHT_CLICK)
     return "OK", keys.SET_MODE_RIGHT_CLICK
+
+@sio.on(keys.MOVE_MOUSE)
+def msg(sid, data):
+    direction = int(data)
+    move_mouse(direction)
+    return "OK", "Mouse Mode Changed To Scroll"
 
 @sio.on(keys.BLINK)
 def msg(sid, data):
