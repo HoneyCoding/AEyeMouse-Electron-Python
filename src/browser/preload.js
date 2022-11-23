@@ -16,12 +16,12 @@ function convertToCamelCase(key) {
 /**
  * JSON 타입
  */
-const api = Object.values(Keys.setMode).reduce((prevJson, keyJson) => {
-    const newJson = { ...prevJson };
-    const functionName = convertToCamelCase(keyJson.key);
-    newJson[functionName] = () => ipcRenderer.send(keyJson.js);
-    return newJson;
-}, {});
+// const api = Object.values(Keys.setMode).reduce((prevJson, keyJson) => {
+//     const newJson = { ...prevJson };
+//     const functionName = convertToCamelCase(keyJson.key);
+//     newJson[functionName] = () => ipcRenderer.send(keyJson.js);
+//     return newJson;
+// }, {});
 
 contextBridge.exposeInMainWorld("electronAPI", {
     // Set Mode Functions
