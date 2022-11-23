@@ -1,6 +1,7 @@
 import pyautogui
 import socketio
 import eventlet
+import keys
 
 from functions import decodeString
 
@@ -21,7 +22,7 @@ def disconnect(sid):
     print('disconnect ', sid)
 
 
-@sio.on('drag-mouse')
+@sio.on(keys.DRAG_MOUSE)
 def msg(sid, data):
     from_x, from_y, to_x, to_y = decodeString(data, int)
     pyautogui.moveTo(from_x, from_y)
@@ -29,7 +30,7 @@ def msg(sid, data):
     return "OK", "Drag"
 
 
-@sio.on('scroll-mouse')
+@sio.on(keys.SCROLL_MOUSE)
 def msg(sid, data):
     direction = data
     print(direction)

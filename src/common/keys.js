@@ -28,8 +28,8 @@ const dragMouse = "drag-mouse";
 
 // Scroll
 const showScrollWindow = "show-scroll-window";
-const hideScrollWindow = 'hide-scroll-window'
-const scrollMouse = 'scroll-mouse'
+const hideScrollWindow = "hide-scroll-window";
+const scrollMouse = "scroll-mouse";
 
 module.exports = {
     setMode: {

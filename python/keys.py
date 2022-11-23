@@ -12,3 +12,5 @@ SET_MODE_TELEPORT = "set-mode-teleport-python"
 CLICK_LEFT = 'click-left-python'
 TELEPORT = 'teleport-python'
 BLINK = 'blink-python'
+DRAG_MOUSE = 'drag-mouse'
+SCROLL_MOUSE = 'scroll-mouse'
