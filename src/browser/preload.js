@@ -3,27 +3,29 @@ const { contextBridge, ipcRenderer } = require("electron");
 const Keys = require("../common/keys");
 const functions = require("../common/functions");
 
+const emptyString = "";
+
 contextBridge.exposeInMainWorld("electronAPI", {
     // Set Mode Functions
     setModeDoubleClick() {
-        ipcRenderer.send(Keys.setModeDoubleClick, "");
+        ipcRenderer.send(Keys.setModeDoubleClick, emptyString);
     },
     setModeRightClick() {
-        ipcRenderer.send(Keys.setModeRightClick, "");
+        ipcRenderer.send(Keys.setModeRightClick, emptyString);
     },
 
     // Show and Hide Window Functions
     showDragWindow() {
-        ipcRenderer.send(Keys.showDragWindow, "");
+        ipcRenderer.send(Keys.showDragWindow, emptyString);
     },
     hideDragWindow() {
-        ipcRenderer.send(Keys.hideDragWindow, "");
+        ipcRenderer.send(Keys.hideDragWindow, emptyString);
     },
     showScrollWindow() {
-        ipcRenderer.send(Keys.showScrollWindow, "");
+        ipcRenderer.send(Keys.showScrollWindow, emptyString);
     },
     hideScrollWindow() {
-        ipcRenderer.send(Keys.hideScrollWindow, "");
+        ipcRenderer.send(Keys.hideScrollWindow, emptyString);
     },
 
     // Drag, Scroll Mouse Functions
