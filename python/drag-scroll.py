@@ -26,12 +26,17 @@ def msg(sid, data):
     pyautogui.click(clicks=2)
     return "OK", keys.DOUBLE_CLICK
 
+@sio.on(keys.RIGHT_CLICK)
+def msg(sid, data):
+    pyautogui.rightClick()
+    return "OK", keys.RIGHT_CLICK
+
 @sio.on(keys.DRAG_MOUSE)
 def msg(sid, data):
     from_x, from_y, to_x, to_y = decodeString(data, int)
     pyautogui.moveTo(from_x, from_y)
     pyautogui.dragTo(to_x, to_y, 0.3, button='left')
-    return "OK", "Drag"
+    return "OK", keys.DRAG_MOUSE
 
 
 @sio.on(keys.SCROLL_MOUSE)
@@ -46,7 +51,7 @@ def msg(sid, data):
 
     pyautogui.scroll(scroll_value)
 
-    return "OK", "Scroll"
+    return "OK", keys.SCROLL_MOUSE
 
 
 if __name__ == '__main__':
