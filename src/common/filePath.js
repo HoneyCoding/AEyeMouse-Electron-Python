@@ -14,10 +14,7 @@ const rendererMainPath = path.join(rendererPath, "main");
 const rendererDragPath = path.join(rendererPath, "drag");
 const rendererLoadingPath = path.join(rendererPath, "loading");
 const rendererScrollPath = path.join(rendererPath, "scroll");
-const rendererScrollButtonsPath = path.join(
-    rendererPath,
-    "scroll-close-button"
-);
+const rendererScrollButtonsPath = path.join(rendererPath, "scroll-buttons");
 
 module.exports = {
     rootPath,
