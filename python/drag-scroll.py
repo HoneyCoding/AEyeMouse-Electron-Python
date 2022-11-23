@@ -44,6 +44,19 @@ def scroll_mouse(direction, speed = 10):
         scroll_value = -speed
 
     pyautogui.scroll(scroll_value)
+    
+def move_mouse(direction):
+    cur_x, cur_y = pyautogui.position()
+    speed = 10
+    if direction == Direction.UP:
+        cur_y -= speed
+    elif direction == Direction.DOWN:
+        cur_y += speed
+    elif direction == Direction.LEFT:
+        cur_x -= speed
+    elif direction == Direction.RIGHT:
+        cur_x += speed
+    pyautogui.moveTo(cur_x, cur_y)
 
 # Socket Functions
 @sio.event
