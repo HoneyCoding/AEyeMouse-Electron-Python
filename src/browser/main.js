@@ -12,7 +12,7 @@ let loadingWindow = null;
 let mainWindow = null;
 let dragWindow = null;
 let scrollWindow = null;
-let closeButtonWindow = null;
+let scrollButtonsWindow = null;
 
 const socket = io("http://localhost:5000");
 
@@ -164,7 +164,7 @@ function createScrollWindow() {
     const closeButtonWindowX = x - (closeButtonWidth - width) / 2;
     const closeButtonWindowY = y + height;
 
-    createCloseButtonWindow(
+    createScrollButtonsWindow(
         closeButtonWidth,
         closeButtonHeight,
         closeButtonWindowX,
@@ -178,11 +178,11 @@ function createScrollWindow() {
     });
 }
 
-function createCloseButtonWindow(width, height, x, y) {
-    if (closeButtonWindow !== null) return;
+function createScrollButtonsWindow(width, height, x, y) {
+    if (scrollButtonsWindow !== null) return;
     if (scrollWindow === null) return;
 
-    closeButtonWindow = new BrowserWindow({
+    scrollButtonsWindow = new BrowserWindow({
         parent: scrollWindow,
         x,
         y,
@@ -200,14 +200,14 @@ function createCloseButtonWindow(width, height, x, y) {
             preload: path.join(filePath.browserPath, "preload.js"),
         },
     });
-    closeButtonWindow.loadFile(
-        path.join(filePath.rendererScrollCloseButtonPath, "index.html")
+    scrollButtonsWindow.loadFile(
+        path.join(filePath.rendererScrollButtonsPath, "index.html")
     );
 
-    closeButtonWindow.show();
+    scrollButtonsWindow.show();
 
-    closeButtonWindow.on("closed", () => {
-        closeButtonWindow = null;
+    scrollButtonsWindow.on("closed", () => {
+        scrollButtonsWindow = null;
     });
 }
 
@@ -267,14 +267,6 @@ function setupIPCSockets() {
     ipcMain.on(Keys.scrollMouse, (event, arg) => {
         if (scrollWindow === null) return;
         socket.emit(Keys.scrollMouse, arg, (err, res) => {
-            console.log(`res from python: ${res}`);
-        });
-    });
-}
-
-function setupIPCSocket(key) {
-    ipcMain.on(key.js, (event, arg) => {
-        socket.emit(key.python, arg, (err, res) => {
             console.log(`res from python: ${res}`);
         });
     });
