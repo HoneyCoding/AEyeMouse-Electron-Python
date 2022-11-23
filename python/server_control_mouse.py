@@ -110,7 +110,7 @@ def msg(sid, data):
         right_click()
     else:
         left_click()
-        set_mode(Mode.LEFT_CLICK)
+    set_mode(Mode.LEFT_CLICK)
 
 # @sio.on(keys.DOUBLE_CLICK)
 # def msg(sid, data):
