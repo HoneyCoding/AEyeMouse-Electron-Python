@@ -219,6 +219,18 @@ function openDevTools() {
 function setupIPCSockets() {
     // Object.values(Keys).map((keyJson) => setupIPCSocket(keyJson));
 
+    ipcMain.on(Keys.setModeDoubleClick, (event, arg) => {
+        socket.emit(Keys.setModeDoubleClick, arg, (err, res) => {
+            console.log(`res from python: ${res}`);
+        });
+    });
+
+    ipcMain.on(Keys.setModeRightClick, (event, arg) => {
+        socket.emit(Keys.setModeRightClick, arg, (err, res) => {
+            console.log(`res from python: ${res}`);
+        });
+    });
+
     ipcMain.on(Keys.dragMouse, (event, arg) => {
         if (dragWindow !== null) {
             dragWindow.close();
