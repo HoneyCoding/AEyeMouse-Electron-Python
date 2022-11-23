@@ -106,11 +106,12 @@ def msg(sid, data):
     global mouse_mode
     if mouse_mode == Mode.DOUBLE_CLICK:
         double_click()
+        set_mode(Mode.LEFT_CLICK)
     elif mouse_mode == Mode.RIGHT_CLICK:
         right_click()
+        set_mode(Mode.LEFT_CLICK)
     else:
         left_click()
-    set_mode(Mode.LEFT_CLICK)
 
 # @sio.on(keys.DOUBLE_CLICK)
 # def msg(sid, data):
