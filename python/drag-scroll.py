@@ -21,6 +21,10 @@ def connect(sid, environ):
 def disconnect(sid):
     print('disconnect ', sid)
 
+@sio.on(keys.DOUBLE_CLICK)
+def msg(sid, data):
+    pyautogui.click(clicks=2)
+    return "OK", keys.DOUBLE_CLICK
 
 @sio.on(keys.DRAG_MOUSE)
 def msg(sid, data):
