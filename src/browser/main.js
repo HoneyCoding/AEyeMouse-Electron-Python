@@ -74,7 +74,7 @@ function createLoadingWindow() {
     if (loadingWindow !== null) return;
 
     const width = 100;
-    const height = 100;
+    const height = width;
 
     loadingWindow = new BrowserWindow({
         width,
