@@ -37,10 +37,9 @@ body {
     font-size: 1.5rem;
 }
 
-.menu-btn {
+.top-btn {
     position: absolute;
     top: 50%;
-    right: 16px;
     transform: translateY(-50%);
     margin: auto 0;
     padding: 4px 8px;
@@ -52,6 +51,14 @@ body {
     justify-content: center;
     transition: font-size 0.3s;
     cursor: pointer;
+}
+
+#menu-btn {
+    left: 16px;
+}
+
+#close-btn {
+    right: 16px;
 }
 
 .btn {
