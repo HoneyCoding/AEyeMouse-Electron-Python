@@ -15,6 +15,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
     },
 
     // Show and Hide Window Functions
+    closeMainWindow() {
+        ipcRenderer.send(Keys.closeMainWindow, emptyString);
+    },
     showDragWindow() {
         ipcRenderer.send(Keys.showDragWindow, emptyString);
     },

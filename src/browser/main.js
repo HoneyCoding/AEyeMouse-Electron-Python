@@ -54,6 +54,7 @@ function createMainWindow() {
         visibleOnAllWorkspaces: true,
         fullscreen: false,
         frame: false,
+        show: false,
         webPreferences: {
             preload: path.join(filePath.browserPath, "preload.js"),
         },
@@ -64,6 +65,8 @@ function createMainWindow() {
     mainWindow.loadFile(htmlPath);
     // mainWindow.setIgnoreMouseEvents(true);
     // mainWindow.maximize();
+
+    mainWindow.on('ready-to-show', () => mainWindow.show());
 
     mainWindow.on("closed", () => {
         mainWindow = null;
@@ -86,6 +89,7 @@ function createLoadingWindow() {
         visibleOnAllWorkspaces: true,
         fullscreen: false,
         frame: false,
+        show: false,
         webPreferences: {
             preload: path.join(filePath.browserPath, "preload.js"),
         },
@@ -94,6 +98,10 @@ function createLoadingWindow() {
     const htmlPath = path.join(filePath.rendererLoadingPath, "index.html");
 
     loadingWindow.loadFile(htmlPath);
+
+    loadingWindow.on('ready-to-show', () => {
+        loadingWindow.show();
+    });
 
     loadingWindow.on("closed", () => {
         loadingWindow = null;
@@ -133,7 +141,7 @@ function createScrollWindow() {
     const primaryDisplay = screen.getPrimaryDisplay();
     const { width: screenWidth } = primaryDisplay.workAreaSize;
 
-    const x = screenWidth - 720;
+    const x = screenWidth - 800;
     const y = 100;
     const width = 40;
     const height = 100;
@@ -160,7 +168,7 @@ function createScrollWindow() {
     scrollWindow.setIgnoreMouseEvents(true);
 
     const closeButtonWidth = 80;
-    const closeButtonHeight = 40;
+    const closeButtonHeight = 40 * 2;
     const closeButtonWindowX = x - (closeButtonWidth - width) / 2;
     const closeButtonWindowY = y + height;
 
@@ -238,6 +246,11 @@ function setupIPCSockets() {
         socket.emit(Keys.dragMouse, arg, (err, res) => {
             console.log(`res from python: ${res}`);
         });
+    });
+
+    ipcMain.on(Keys.closeMainWindow, (event, arg) => {
+        if (mainWindow !== null)
+            mainWindow.close();
     });
 
     ipcMain.on(Keys.showDragWindow, (event, arg) => {

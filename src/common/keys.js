@@ -2,6 +2,9 @@
 const setModeDoubleClick = "set-mode-double-click";
 const setModeRightClick = "set-mode-right-click";
 
+// Main
+const closeMainWindow = 'close-main-window';
+
 // Drag
 const showDragWindow = "show-drag-window";
 const hideDragWindow = "hide-drag-window";
@@ -18,6 +21,7 @@ module.exports = {
     setModeRightClick,
 
     // Show and Hide Window Function Keys
+    closeMainWindow,
     showDragWindow,
     hideDragWindow,
     showScrollWindow,
