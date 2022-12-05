@@ -12,6 +12,7 @@ const resourcesPath = path.join(srcPath, "resources");
 
 const rendererMainPath = path.join(rendererPath, "main");
 const rendererDragPath = path.join(rendererPath, "drag");
+const rendererMovePath = path.join(rendererPath, "move");
 const rendererLoadingPath = path.join(rendererPath, "loading");
 const rendererScrollPath = path.join(rendererPath, "scroll");
 const rendererScrollButtonsPath = path.join(rendererPath, "scroll-buttons");
@@ -23,8 +24,10 @@ module.exports = {
     browserPath,
     commonPath,
     rendererPath,
+    resourcesPath,
     rendererMainPath,
     rendererDragPath,
+    rendererMovePath,
     rendererLoadingPath,
     rendererScrollPath,
     rendererScrollButtonsPath,

@@ -5,6 +5,11 @@ const setModeRightClick = "set-mode-right-click";
 // Main
 const closeMainWindow = 'close-main-window';
 
+// Move Window
+const showMoveWindow = 'show-move-window';
+const hideMoveWindow = 'hide-move-window';
+const moveMainWindow = 'move-main-window';
+
 // Drag
 const showDragWindow = "show-drag-window";
 const hideDragWindow = "hide-drag-window";
@@ -22,6 +27,9 @@ module.exports = {
 
     // Show and Hide Window Function Keys
     closeMainWindow,
+    showMoveWindow,
+    hideMoveWindow,
+    moveMainWindow,
     showDragWindow,
     hideDragWindow,
     showScrollWindow,

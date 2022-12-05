@@ -13,6 +13,10 @@ const btnRightClick = document.getElementById("btnRightClick");
 const btnDrag = document.getElementById("btnDrag");
 const btnScroll = document.getElementById("btnScroll");
 
+btnMove.addEventListener('click', (e) => {
+    electronAPI.showMoveWindow();
+});
+
 btnClose.addEventListener('click', (e) => {
     electronAPI.closeMainWindow();
 });

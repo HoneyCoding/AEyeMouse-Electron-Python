@@ -18,6 +18,15 @@ contextBridge.exposeInMainWorld("electronAPI", {
     closeMainWindow() {
         ipcRenderer.send(Keys.closeMainWindow, emptyString);
     },
+    showMoveWindow() {
+        ipcRenderer.send(Keys.showMoveWindow, emptyString);
+    },
+    hideMoveWindow() {
+        ipcRenderer.send(Keys.hideMoveWindow, emptyString);
+    },
+    moveMainWindow(x, y) {
+        ipcRenderer.send(Keys.moveMainWindow, functions.encodeString(x, y));
+    },
     showDragWindow() {
         ipcRenderer.send(Keys.showDragWindow, emptyString);
     },

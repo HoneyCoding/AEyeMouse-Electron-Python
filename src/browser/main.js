@@ -5,11 +5,13 @@ const { io } = require("socket.io-client");
 
 const Keys = require("../common/keys");
 const filePath = require("../common/filePath");
+const functions = require('../common/functions');
 
 const runPython = require("../common/runPython");
 
 let loadingWindow = null;
 let mainWindow = null;
+let moveWindow = null;
 let dragWindow = null;
 let scrollWindow = null;
 let scrollButtonsWindow = null;
@@ -66,10 +68,37 @@ function createMainWindow() {
     // mainWindow.setIgnoreMouseEvents(true);
     // mainWindow.maximize();
 
-    mainWindow.on('ready-to-show', () => mainWindow.show());
+    mainWindow.on("ready-to-show", () => mainWindow.show());
 
     mainWindow.on("closed", () => {
         mainWindow = null;
+    });
+}
+
+function createMoveWindow() {
+    if (moveWindow !== null) return;
+
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { width, height } = primaryDisplay.workAreaSize;
+
+    moveWindow = new BrowserWindow({
+        width,
+        height,
+        resizable: false,
+        movable: false,
+        fullscreenable: false,
+        focusable: false,
+        frame: false,
+        alwaysOnTop: true,
+        transparent: true,
+        webPreferences: {
+            preload: path.join(filePath.browserPath, "preload.js"),
+        },
+    });
+
+    moveWindow.loadFile(path.join(filePath.rendererMovePath, "index.html"));
+    moveWindow.on("closed", () => {
+        moveWindow = null;
     });
 }
 
@@ -99,7 +128,7 @@ function createLoadingWindow() {
 
     loadingWindow.loadFile(htmlPath);
 
-    loadingWindow.on('ready-to-show', () => {
+    loadingWindow.on("ready-to-show", () => {
         loadingWindow.show();
     });
 
@@ -249,8 +278,19 @@ function setupIPCSockets() {
     });
 
     ipcMain.on(Keys.closeMainWindow, (event, arg) => {
-        if (mainWindow !== null)
-            mainWindow.close();
+        if (mainWindow !== null) mainWindow.close();
+    });
+
+    ipcMain.on(Keys.showMoveWindow, (event, arg) => {
+        if (moveWindow === null) {
+            createMoveWindow();
+        }
+    });
+
+    ipcMain.on(Keys.moveMainWindow, (event, arg) => {
+        if (moveWindow !== null) moveWindow.close();
+        const [x, y] = functions.decodeString(arg).map(i => parseInt(i));
+        mainWindow.setPosition(x, y);
     });
 
     ipcMain.on(Keys.showDragWindow, (event, arg) => {
