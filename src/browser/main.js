@@ -11,7 +11,7 @@ const runPython = require("../common/runPython");
 
 let loadingWindow = null;
 let mainWindow = null;
-let moveWindow = null;
+let moveMainWindow = null;
 let dragWindow = null;
 let scrollWindow = null;
 let scrollButtonsWindow = null;
@@ -75,13 +75,13 @@ function createMainWindow() {
     });
 }
 
-function createMoveWindow() {
-    if (moveWindow !== null) return;
+function createMoveMainWindow() {
+    if (moveMainWindow !== null) return;
 
     const primaryDisplay = screen.getPrimaryDisplay();
     const { width, height } = primaryDisplay.workAreaSize;
 
-    moveWindow = new BrowserWindow({
+    moveMainWindow = new BrowserWindow({
         width,
         height,
         resizable: false,
@@ -96,9 +96,9 @@ function createMoveWindow() {
         },
     });
 
-    moveWindow.loadFile(path.join(filePath.rendererMovePath, "index.html"));
-    moveWindow.on("closed", () => {
-        moveWindow = null;
+    moveMainWindow.loadFile(path.join(filePath.rendererMoveMainPath, "index.html"));
+    moveMainWindow.on("closed", () => {
+        moveMainWindow = null;
     });
 }
 
@@ -281,14 +281,14 @@ function setupIPCSockets() {
         if (mainWindow !== null) mainWindow.close();
     });
 
-    ipcMain.on(Keys.showMoveWindow, (event, arg) => {
-        if (moveWindow === null) {
-            createMoveWindow();
+    ipcMain.on(Keys.showMoveMainWindow, (event, arg) => {
+        if (moveMainWindow === null) {
+            createMoveMainWindow();
         }
     });
 
     ipcMain.on(Keys.moveMainWindow, (event, arg) => {
-        if (moveWindow !== null) moveWindow.close();
+        if (moveMainWindow !== null) moveMainWindow.close();
         const [x, y] = functions.decodeString(arg).map(i => parseInt(i));
         mainWindow.setPosition(x, y);
     });

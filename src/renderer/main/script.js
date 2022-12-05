@@ -14,7 +14,7 @@ const btnDrag = document.getElementById("btnDrag");
 const btnScroll = document.getElementById("btnScroll");
 
 btnMove.addEventListener('click', (e) => {
-    electronAPI.showMoveWindow();
+    electronAPI.showMoveMainWindow();
 });
 
 btnClose.addEventListener('click', (e) => {
