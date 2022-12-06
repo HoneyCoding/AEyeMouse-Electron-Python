@@ -21,19 +21,25 @@ body {
     align-items: center;
 }
 
-#close-btn {
+.btn {
     border: none;
     outline: none;
     background-color: var(--white);
     color: var(--blue);
-    padding: 4px 8px;
+    min-width: 68px;
+    min-height: 28px;
     font-size: 14px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 4px;
 }
 
-#close-btn:hover {
+.btn:last-of-type {
+    margin-bottom: 0;
+}
+
+.btn:hover {
     font-size: 16px;
 }
