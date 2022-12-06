@@ -304,8 +304,8 @@ function setupIPCSockets() {
         if (dragWindow !== null) {
             dragWindow.close();
         }
-        const [x, y] = functions.decodeString(arg).map(i => parseInt(i));
-        const passArg = functions.encodeString(x, y);
+        const [fromX, fromY, toX, toY] = functions.decodeString(arg).map(i => parseInt(i));
+        const passArg = functions.encodeString(fromX, fromY, toX, toY);
         socket.emit(Keys.dragMouse, passArg, (err, res) => {
             console.log(`res from python: ${res}`);
         });
