@@ -12,6 +12,8 @@ let pinAreaPoints = { topLeftX: 0, topLeftY: 0, bottomRightX: 0, bottomRightY: 0
 
 let clickCount = 0;
 
+let dragFlag = false;
+
 container.addEventListener('click', function(e) {
     if (clickCount >= 2 && !clickable.contains(e.target)) {
         electronAPI.hideDragWindow();
@@ -30,6 +32,10 @@ container.addEventListener('click', function(e) {
 });
 
 clickable.addEventListener("click", function (e) {
+    if (dragFlag === true) return;
+
+    dragFlag = false;
+
     const { topLeftX, topLeftY, bottomRightX, bottomRightY } = pinAreaPoints;
     electronAPI.dragMouse(topLeftX, topLeftY, bottomRightX, bottomRightY);
 });
