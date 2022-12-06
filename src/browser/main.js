@@ -5,13 +5,14 @@ const { io } = require("socket.io-client");
 
 const Keys = require("../common/keys");
 const filePath = require("../common/filePath");
-const functions = require('../common/functions');
+const functions = require("../common/functions");
 
 const runPython = require("../common/runPython");
 
 let loadingWindow = null;
 let mainWindow = null;
 let moveMainWindow = null;
+let moveScrollWindow = null;
 let dragWindow = null;
 let scrollWindow = null;
 let scrollButtonsWindow = null;
@@ -96,9 +97,40 @@ function createMoveMainWindow() {
         },
     });
 
-    moveMainWindow.loadFile(path.join(filePath.rendererMoveMainPath, "index.html"));
+    moveMainWindow.loadFile(
+        path.join(filePath.rendererMoveMainPath, "index.html")
+    );
     moveMainWindow.on("closed", () => {
         moveMainWindow = null;
+    });
+}
+
+function createMoveScrollWindow() {
+    if (moveScrollWindow !== null) return;
+
+    const primaryDisplay = screen.getPrimaryDisplay();
+    const { width, height } = primaryDisplay.workAreaSize;
+
+    moveScrollWindow = new BrowserWindow({
+        width,
+        height,
+        resizable: false,
+        movable: false,
+        fullscreenable: false,
+        focusable: false,
+        frame: false,
+        alwaysOnTop: true,
+        transparent: true,
+        webPreferences: {
+            preload: path.join(filePath.browserPath, "preload.js"),
+        },
+    });
+
+    moveScrollWindow.loadFile(
+        path.join(filePath.rendererMoveScrollPath, "index.html")
+    );
+    moveScrollWindow.on("closed", () => {
+        moveScrollWindow = null;
     });
 }
 
@@ -272,7 +304,9 @@ function setupIPCSockets() {
         if (dragWindow !== null) {
             dragWindow.close();
         }
-        socket.emit(Keys.dragMouse, arg, (err, res) => {
+        const [x, y] = functions.decodeString(arg).map(i => parseInt(i));
+        const passArg = functions.encodeString(x, y);
+        socket.emit(Keys.dragMouse, passArg, (err, res) => {
             console.log(`res from python: ${res}`);
         });
     });
@@ -289,8 +323,20 @@ function setupIPCSockets() {
 
     ipcMain.on(Keys.moveMainWindow, (event, arg) => {
         if (moveMainWindow !== null) moveMainWindow.close();
-        const [x, y] = functions.decodeString(arg).map(i => parseInt(i));
+        const [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
         mainWindow.setPosition(x, y);
+    });
+
+    ipcMain.on(Keys.showMoveScrollWindow, (event, arg) => {
+        if (moveScrollWindow === null) {
+            createMoveScrollWindow();
+        }
+    });
+
+    ipcMain.on(Keys.moveScrollWindow, (event, arg) => {
+        if (moveScrollWindow !== null) moveScrollWindow.close();
+        const [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
+        scrollWindow.setPosition(x, y);
     });
 
     ipcMain.on(Keys.showDragWindow, (event, arg) => {

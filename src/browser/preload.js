@@ -27,6 +27,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
     moveMainWindow(x, y) {
         ipcRenderer.send(Keys.moveMainWindow, functions.encodeString(x, y));
     },
+    showMoveScrollWindow() {
+        ipcRenderer.send(Keys.showMoveScrollWindow, emptyString);
+    },
+    moveScrollWindow(x, y) {
+        ipcRenderer.send(Keys.moveScrollWindow, functions.encodeString(x, y));
+    },
     showDragWindow() {
         ipcRenderer.send(Keys.showDragWindow, emptyString);
     },

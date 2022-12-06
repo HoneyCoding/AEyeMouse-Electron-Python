@@ -3,12 +3,15 @@ const setModeDoubleClick = "set-mode-double-click";
 const setModeRightClick = "set-mode-right-click";
 
 // Main
-const closeMainWindow = 'close-main-window';
+const closeMainWindow = "close-main-window";
 
 // Move Window
-const showMoveMainWindow = 'show-move-main-window';
-const hideMoveMainWindow = 'hide-move-main-window';
-const moveMainWindow = 'move-main-window';
+const showMoveMainWindow = "show-move-main-window";
+const hideMoveMainWindow = "hide-move-main-window";
+const moveMainWindow = "move-main-window";
+
+const showMoveScrollWindow = "show-move-scroll-window";
+const moveScrollWindow = "move-scroll-window";
 
 // Drag
 const showDragWindow = "show-drag-window";
@@ -30,6 +33,8 @@ module.exports = {
     showMoveMainWindow,
     hideMoveMainWindow,
     moveMainWindow,
+    showMoveScrollWindow,
+    moveScrollWindow,
     showDragWindow,
     hideDragWindow,
     showScrollWindow,
