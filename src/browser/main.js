@@ -232,8 +232,6 @@ function createScrollWindow() {
     });
     scrollWindow.loadFile(path.join(filePath.rendererScrollPath, "index.html"));
 
-    scrollWindow.setIgnoreMouseEvents(true);
-
     const closeButtonWidth = 80;
     const closeButtonHeight = 40 * 2;
     const closeButtonWindowX = x - (closeButtonWidth - width) / 2;
@@ -375,8 +373,10 @@ function setupIPCSockets() {
 
     ipcMain.on(Keys.scrollMouse, (event, arg) => {
         if (scrollWindow === null) return;
+        scrollWindow.setIgnoreMouseEvents(true);
         socket.emit(Keys.scrollMouse, arg, (err, res) => {
             console.log(`res from python: ${res}`);
+            scrollWindow.setIgnoreMouseEvents(false);
         });
     });
 }

@@ -1,3 +1,4 @@
+import platform
 import pyautogui
 import socketio
 import eventlet
@@ -76,7 +77,13 @@ def msg(sid, data):
 @sio.on(keys.SCROLL_MOUSE)
 def msg(sid, data):
     direction = data
-    speed = 10
+    
+    if platform.system().lower() == "darwin":
+        speed = 20
+    else:
+        speed = 80
+    
+    
     if direction == "UP":
         scroll_mouse(Direction.UP, speed)
     elif direction == "DOWN":
