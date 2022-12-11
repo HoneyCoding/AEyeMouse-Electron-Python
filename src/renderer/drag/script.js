@@ -28,11 +28,12 @@ container.addEventListener('click', function(e) {
 
     if (clickCount === 2) {
         setPinArea();
+        dragFlag = true;
     }
 });
 
 clickable.addEventListener("click", function (e) {
-    if (dragFlag === true) return;
+    if (dragFlag === false) return;
 
     dragFlag = false;
 
