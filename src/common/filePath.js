@@ -1,6 +1,6 @@
 const path = require("path");
 
-const rootPath = path.join(process.env.PWD);
+const rootPath = path.join(process.cwd());
 
 const srcPath = path.join(rootPath, "src");
 const pythonPath = path.join(rootPath, "python");
