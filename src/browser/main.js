@@ -260,7 +260,6 @@ function createScrollButtonsWindow(width, height, x, y) {
     if (scrollWindow === null) return;
 
     scrollButtonsWindow = new BrowserWindow({
-        parent: scrollWindow,
         x,
         y,
         width,
@@ -269,7 +268,6 @@ function createScrollButtonsWindow(width, height, x, y) {
         movable: false,
         fullscreenable: false,
         focusable: false,
-        show: false,
         frame: false,
         alwaysOnTop: true,
         transparent: true,
@@ -280,8 +278,6 @@ function createScrollButtonsWindow(width, height, x, y) {
     scrollButtonsWindow.loadFile(
         path.join(filePath.rendererScrollButtonsPath, "index.html")
     );
-
-    scrollButtonsWindow.show();
 
     scrollButtonsWindow.on("closed", () => {
         scrollButtonsWindow = null;
@@ -344,7 +340,12 @@ function setupIPCSockets() {
     ipcMain.on(Keys.moveScrollWindow, (event, arg) => {
         if (moveScrollWindow !== null) moveScrollWindow.close();
         const [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
-        scrollWindow.setPosition(x, y);
+        scrollWindow.setPosition(x, y)
+
+        const closeButtonWindowX = x - 40 / 2;
+        const closeButtonWindowY = y + 100;
+
+        scrollButtonsWindow.setPosition(closeButtonWindowX, closeButtonWindowY);
     });
 
     ipcMain.on(Keys.showDragWindow, (event, arg) => {
