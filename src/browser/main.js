@@ -250,6 +250,7 @@ function createScrollWindow() {
 
     scrollWindow.on("closed", () => {
         scrollWindow = null;
+        if (scrollButtonsWindow !== null) scrollButtonsWindow.close();
     });
 
     scrollWindow.moveTop();
@@ -316,7 +317,7 @@ function setupIPCSockets() {
     });
 
     ipcMain.on(Keys.closeMainWindow, (event, arg) => {
-        if (mainWindow !== null) mainWindow.close();
+        app.quit();
     });
 
     ipcMain.on(Keys.showMoveMainWindow, (event, arg) => {
@@ -402,13 +403,6 @@ app.whenReady()
             if (BrowserWindow.getAllWindows().length === 0) createWindow();
         });
     });
-
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
-app.on("window-all-closed", function () {
-    if (process.platform !== "darwin") app.quit();
-});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
