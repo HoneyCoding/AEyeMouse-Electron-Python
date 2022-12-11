@@ -52,7 +52,7 @@ function createMainWindow() {
         height: mainWindowHeight,
         alwaysOnTop: true,
         titleBarStyle: "hidden-inset",
-        transparent: true,
+        transparent: false,
         resizable: false,
         visibleOnAllWorkspaces: true,
         fullscreen: false,
