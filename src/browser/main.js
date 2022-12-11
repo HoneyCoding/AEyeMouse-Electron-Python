@@ -103,6 +103,8 @@ function createMoveMainWindow() {
     moveMainWindow.on("closed", () => {
         moveMainWindow = null;
     });
+
+    moveMainWindow.moveTop();
 }
 
 function createMoveScrollWindow() {
@@ -132,6 +134,8 @@ function createMoveScrollWindow() {
     moveScrollWindow.on("closed", () => {
         moveScrollWindow = null;
     });
+
+    moveScrollWindow.moveTop();
 }
 
 function createLoadingWindow() {
@@ -194,6 +198,8 @@ function createDragWindow() {
     dragWindow.on("closed", () => {
         dragWindow = null;
     });
+
+    dragWindow.moveTop();
 }
 
 function createScrollWindow() {
@@ -245,6 +251,8 @@ function createScrollWindow() {
     scrollWindow.on("closed", () => {
         scrollWindow = null;
     });
+
+    scrollWindow.moveTop();
 }
 
 function createScrollButtonsWindow(width, height, x, y) {
