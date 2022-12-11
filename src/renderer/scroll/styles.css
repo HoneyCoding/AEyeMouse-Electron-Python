@@ -33,6 +33,10 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
+    cursor: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .focusable-area:hover {
