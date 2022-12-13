@@ -304,10 +304,16 @@ function setupIPCSockets() {
     });
 
     ipcMain.on(Keys.dragMouse, (event, arg) => {
+        const [dragWindowX, dragWindowY] = dragWindow.getPosition();
         if (dragWindow !== null) {
             dragWindow.close();
         }
-        const [fromX, fromY, toX, toY] = functions.decodeString(arg).map(i => parseInt(i));
+        let [fromX, fromY, toX, toY] = functions.decodeString(arg).map(i => parseInt(i));
+        fromX += dragWindowX;
+        toX += dragWindowX;
+        fromY += dragWindowY;
+        toY += dragWindowY;
+
         const passArg = functions.encodeString(fromX, fromY, toX, toY);
         socket.emit(Keys.dragMouse, passArg, (err, res) => {
             console.log(`res from python: ${res}`);
@@ -325,8 +331,11 @@ function setupIPCSockets() {
     });
 
     ipcMain.on(Keys.moveMainWindow, (event, arg) => {
+        const [mainWindowX, mainWindowY] = moveMainWindow.getPosition();
         if (moveMainWindow !== null) moveMainWindow.close();
-        const [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
+        let [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
+        x += mainWindowX;
+        y += mainWindowY;
         mainWindow.setPosition(x, y);
     });
 
@@ -337,14 +346,20 @@ function setupIPCSockets() {
     });
 
     ipcMain.on(Keys.moveScrollWindow, (event, arg) => {
+        const [scrollWindowX, scrollWindowY] = moveScrollWindow.getPosition();
         if (moveScrollWindow !== null) moveScrollWindow.close();
-        const [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
-        scrollWindow.setPosition(x, y)
+        let [x, y] = functions.decodeString(arg).map((i) => parseInt(i));
+        x += scrollWindowX;
+        y += scrollWindowY;
+        scrollWindow.setPosition(x, y);
 
         const closeButtonWindowX = x - 40 / 2;
         const closeButtonWindowY = y + 100;
 
-        scrollButtonsWindow.setPosition(closeButtonWindowX, closeButtonWindowY);
+        scrollButtonsWindow.setPosition(
+            closeButtonWindowX,
+            closeButtonWindowY
+        );
     });
 
     ipcMain.on(Keys.showDragWindow, (event, arg) => {
