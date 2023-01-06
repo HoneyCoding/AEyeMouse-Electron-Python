@@ -72,7 +72,7 @@ IPC에 대한 자세한 내용은 공식 홈페이지 [Inter-Process Communicati
 
 해당 글 작성자는 [Visual Studio Code](https://code.visualstudio.com)로 작업하였습니다.
 
-![Visual Studio Code 이미지](vscode.png)
+![Visual Studio Code 이미지](VSCode.png)
 
 Visual Studio Code 이미지
 
