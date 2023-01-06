@@ -29,4 +29,4 @@ npm start
 
 ## 파란학기 GUI 프로젝트 문서 링크
 
-[링크]("https://github.com/HoneyCoding/AEyeMouse-Electron-Python/tree/main/GUI%20Project%20Documents")를 클릭하여 파란학기 GUI 프로젝트 문서 링크로 이동하실 수 있습니다.
+[링크](https://github.com/HoneyCoding/AEyeMouse-Electron-Python/tree/main/GUI%20Project%20Documents)를 클릭하여 파란학기 GUI 프로젝트 문서 링크로 이동하실 수 있습니다.
