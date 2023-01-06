@@ -72,24 +72,24 @@ IPC에 대한 자세한 내용은 공식 홈페이지 [Inter-Process Communicati
 
 해당 글 작성자는 [Visual Studio Code](https://code.visualstudio.com)로 작업하였습니다.
 
-![Visual Studio Code 이미지](VSCode.png)
+![Visual Studio Code 이미지](vscode.png)
 
 Visual Studio Code 이미지
 
 # 완성된 GUI 모습
 
-![Main Window 이미지](Main Window.png)
+![Main Window 이미지](main_window.png)
 
 Main Window 이미지
 
-![Main Window 위치 조정 이미지](Main Window Move.png)
+![Main Window 위치 조정 이미지](main_window_move.png)
 
 Main Window 위치 조정 이미지
 
-![Scroll Window 이미지](Scroll Window.png)
+![Scroll Window 이미지](scroll_window.png)
 
 Scroll Window 이미지
 
-![Pin을 통해 드래그하는 이미지](Pin Window.png)
+![Pin을 통해 드래그하는 이미지](pin_window.png)
 
 Pin을 통해 드래그하는 이미지
