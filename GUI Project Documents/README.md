@@ -87,9 +87,9 @@ Visual Studio Code 이미지
 
 2. 새로 Electron Forge를 활용
     
-    [Electron Forge](https://www.electronforge.io/import-existing-project)를 활용할 경우 Windows OS, macOS, Linux 계열의 실행 파일 빌드가 간편해진다.
+    [Electron Forge](https://www.electronforge.io/import-existing-project)를 활용할 경우 Windows OS, macOS, Linux 계열의 실행 파일 빌드가 간편해집니다.
 
-    현재 구현한 코드에서는 Electron Forge를 사용하고 있지 않다.
+    현재 구현한 코드에서는 Electron Forge를 사용하고 있지 않습니다.
 
 # 완성된 GUI 모습
 
