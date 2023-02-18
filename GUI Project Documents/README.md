@@ -76,6 +76,21 @@ IPC에 대한 자세한 내용은 공식 홈페이지 [Inter-Process Communicati
 
 Visual Studio Code 이미지
 
+# 개선 가능한 기능
+1. 마우스 커서 컨트롤 기능 구현 언어: 기존 Python -> 새로 JavaScript로 변경
+
+    2022년도 2학기에는 마우스 커서 컨트롤 기능 구현 코드를 파이썬으로 작성하였습니다. 
+    
+    하지만 JavaScript의 [nut.js](https://nutjs.dev/API/mouse) 라이브러리를 활용할 경우 마우스 컨트롤 기능을 기존에 구현한 방식보다 더욱 오류 없이, 그리고 빠른 속도로 실행할 수 있음을 알게 되었습니다.
+    
+    기존에 파이썬으로 구현한 것을 nut.js 라이브러리로 대체하여 구현할 경우 프로그래밍 언어도 JavaScript 하나로 통일할 수 있습니다. exe와 같은 실행 파일을 빌드할 때에도 파이썬과 JavaScript를 섞어 사용하는 것보다 JavaScript로 프로그래밍 언어를 통일하였을 때에 빌드 난이도가 하락합니다.
+
+2. 새로 Electron Forge를 활용
+    
+    [Electron Forge](https://www.electronforge.io/import-existing-project)를 활용할 경우 Windows OS, macOS, Linux 계열의 실행 파일 빌드가 간편해진다.
+
+    현재 구현한 코드에서는 Electron Forge를 사용하고 있지 않다.
+
 # 완성된 GUI 모습
 
 ![Main Window 이미지](main_window.png)
